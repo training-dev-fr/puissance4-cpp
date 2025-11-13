@@ -22,7 +22,7 @@ void Square::clearToken() {
 void Square::display() {
     cout << "[";
     if(token.has_value()){
-        cout << "o";
+        cout << token.value_ref();
     }else{
         cout << " ";
     }

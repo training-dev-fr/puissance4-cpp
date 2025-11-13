@@ -10,7 +10,8 @@ Grid::Grid() {
 }
 
 void Grid::display() {
-cout << endl << "-----------------------" << endl;
+    system("cls");
+    cout << "-----------------------" << endl;
     for(int col = 0; col < column_list.size() ; col++) {
         column_list[col].display();
     }
