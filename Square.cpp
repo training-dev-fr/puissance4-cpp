@@ -28,3 +28,7 @@ void Square::display() {
     }
     cout << "]";
 }
+
+bool Square::hasToken(){
+    return token.has_value();
+}

@@ -22,6 +22,7 @@ class Square {
         void clearToken();
 
         void display();
+        bool hasToken();
 
 };
 

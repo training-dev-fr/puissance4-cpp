@@ -13,6 +13,7 @@
                 "Square.cpp",
                 "Column.cpp",
                 "Grid.cpp",
+                "Game.cpp",
                 "-o",
                 "main"
             ],

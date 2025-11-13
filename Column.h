@@ -14,6 +14,7 @@ class Column {
         int getX() const;
         void display();
         Square& getSquare(int yCoord);
+        int getSquareNumber();
 };
 
 #endif

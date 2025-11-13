@@ -24,3 +24,7 @@ void Column::display() {
 Square& Column::getSquare(int yCoord) {
     return square_list[yCoord];
 };
+
+int Column::getSquareNumber(){
+    return square_list.size();
+}
