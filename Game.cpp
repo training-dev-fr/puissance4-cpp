@@ -39,11 +39,11 @@ void Game::start()
 }
 void Game::selectNames()
 {
-    cout << "Veillez saisir le nom du joueur 1 :";
+    cout << "Veuillez saisir le nom du joueur 1 :";
     string name1;
     cin >> name1;
     j1.setNom(name1);
-    cout << "Veillez saisir le token du joueur 1 :";
+    cout << "Veuillez saisir le token du joueur 1 :";
     string token1;
     cin >> token1;
     j1.setToken(token1);
