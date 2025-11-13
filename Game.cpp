@@ -17,7 +17,13 @@ void Game::start()
         cout << "Joueur : " << currentPlayer->getNom() << endl;
         cout << "Choisissez une colonne entre 0 et 6" << endl;
         cin >> selectedCol;
-        play(selectedCol);
+        Square square = play(selectedCol);
+        vector<array<Square *, 4>> combinaison_list = getCombinaisons(square);
+        if (checkWin(combinaison_list))
+        {
+            grid.display();
+            break;
+        }
         if (currentPlayer == &j1)
         {
             currentPlayer = &j2;
@@ -27,6 +33,9 @@ void Game::start()
             currentPlayer = &j1;
         }
     }
+    cout << "Vainqueur :" << currentPlayer->getNom() << endl;
+    cout << "Partie terminee" << endl;
+    system("pause");
 }
 void Game::selectNames()
 {
@@ -48,7 +57,7 @@ void Game::selectNames()
     j2.setToken(token2);
 }
 
-void Game::play(int col)
+Square Game::play(int col)
 {
     Column &currentCol = grid.getColumn(col);
     for (int i = currentCol.getSquareNumber() - 1; i >= 0; i--)
@@ -56,7 +65,7 @@ void Game::play(int col)
         if (!currentCol.getSquare(i).hasToken())
         {
             currentCol.getSquare(i).setToken(currentPlayer->getToken());
-            break;
+            return currentCol.getSquare(i);
         }
     }
 }
@@ -95,7 +104,7 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
         {
             if (grid.columnExist(square.getX()) && grid.getColumn(square.getX()).squareExist(y))
             {
-            combinaison[i++] = &grid.getColumn(square.getX()).getSquare(y);
+                combinaison[i++] = &grid.getColumn(square.getX()).getSquare(y);
             }
             else
             {
@@ -117,7 +126,7 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
         {
             if (grid.columnExist(square.getX() - xy) && grid.getColumn(square.getX() - xy).squareExist(square.getY() - xy))
             {
-            combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() - xy);
+                combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() - xy);
             }
             else
             {
@@ -139,7 +148,7 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
         {
             if (grid.columnExist(square.getX() - xy) && grid.getColumn(square.getX() - xy).squareExist(square.getY() + xy))
             {
-            combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() + xy);
+                combinaison[i++] = &grid.getColumn(square.getX() - xy).getSquare(square.getY() + xy);
             }
             else
             {
@@ -157,7 +166,7 @@ vector<array<Square *, 4>> Game::getCombinaisons(Square square)
 
 void Game::drawCombinaison()
 {
-    auto combinaison_list = getCombinaisons(grid.getColumn(2).getSquare(0));
+    auto combinaison_list = getCombinaisons(grid.getColumn(4).getSquare(4));
     for (int c = 0; c <= combinaison_list.size() - 1; c++)
     {
         for (int s = 0; s <= combinaison_list[c].size() - 1; s++)
@@ -168,9 +177,28 @@ void Game::drawCombinaison()
         system("pause");
         grid.reset();
     }
-    // auto und = grid.getColumn(0).getSquare(4);
 }
 
-// bool Game::checkWin(vector<array<Square, 4>>)
-// {
-// }
+bool Game::checkWin(vector<array<Square *, 4>> combinaison_list)
+{
+    for (int index = 0; index < combinaison_list.size(); index++)
+    {
+
+        array<Square *, 4> combinaison = combinaison_list[index];
+        if (combinaison[0]->getToken().has_value() &&
+            combinaison[1]->getToken().has_value() &&
+            combinaison[2]->getToken().has_value() &&
+            combinaison[3]->getToken().has_value())
+        {
+            string token = combinaison[0]->getToken().value_ref();
+            if (token == combinaison[1]->getToken().value_ref() &&
+                token == combinaison[2]->getToken().value_ref() &&
+                token == combinaison[3]->getToken().value_ref())
+            {
+                
+                return true;
+            }
+        }
+    }
+    return false;
+}
