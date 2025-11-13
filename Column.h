@@ -15,6 +15,7 @@ class Column {
         void display();
         Square& getSquare(int yCoord);
         int getSquareNumber();
+        bool squareExist(int yCoord);
 };
 
 #endif

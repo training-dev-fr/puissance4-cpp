@@ -10,8 +10,10 @@ using namespace std;
 int main()
 {
     Game game;
-    game.selectNames();
-    game.start();
+    // game.selectNames();
+    // game.start();
+
+    game.drawCombinaison();
 
     system("pause");
     return 0;

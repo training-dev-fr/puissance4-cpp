@@ -11,6 +11,8 @@ class Grid {
         Grid();
         void display();
         Column& getColumn(int xCoord);
+        void reset();
+        bool columnExist(int xCoord);
 };
 
 #endif

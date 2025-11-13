@@ -9,7 +9,9 @@ Square::Square(int xCoord, int yCoord) : x(xCoord), y (yCoord), token() {}
 
 int Square::getX() const { return x; }
 int Square::getY() const { return y; }
-Optional<string> Square::getToken() const {return token; }
+Optional<string>& Square::getToken() {
+    return token;
+     }
 
 void Square::setToken(const string& value) {
     token = value;

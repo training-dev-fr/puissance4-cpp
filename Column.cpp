@@ -28,3 +28,7 @@ Square& Column::getSquare(int yCoord) {
 int Column::getSquareNumber(){
     return square_list.size();
 }
+
+bool Column::squareExist(int yCoord){
+    return yCoord >= 0 && yCoord < square_list.size();
+}

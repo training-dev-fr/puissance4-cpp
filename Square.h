@@ -18,7 +18,7 @@ class Square {
         int getX() const;
         int getY() const;
         void setToken(const string& value);
-        Optional<string> getToken() const;
+        Optional<string>& getToken();
         void clearToken();
 
         void display();
